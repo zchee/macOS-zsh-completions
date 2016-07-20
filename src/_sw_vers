@@ -1,0 +1,11 @@
+#compdef sw_vers
+
+_sw_vers() {
+  _arguments \
+    '-productName[Product name]' \
+    '-productVersion[Product version]' \
+    '-buildVersion[Build version]'
+}
+
+_sw_vers
+# vim:ft=zsh:sts=2:sw=2:ts=2:expandtab
