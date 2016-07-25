@@ -1,0 +1,51 @@
+#compdef nm
+
+    # '-aarch64-neon-syntax[Choose style of NEON code to emit from AArch64 backend]:(generic apple)' \
+    # =generic           -   Emit generic NEON assembly \
+    # =apple             -   Emit Apple-style NEON assembly \
+    # '-format[Specify output format]:(bsd sysv posix darwin)' \
+    # '  =bsd               -   BSD format \
+    # '  =sysv              -   System V format \
+    # '  =posix             -   POSIX.2 format \
+    # '  =darwin            -   Darwin -m format \
+    # '-radix[Radix (o/d/x) for printing symbol Values]' \
+    # '  =d                 -   decimal \
+    # '  =o                 -   octal \
+    # '  =x                 -   hexadecimal \
+    # '-x86-asm-syntax[Choose style of code to emit from X86 backend:]' \
+    # '  =att               -   Emit AT&T-style assembly \
+    # '  =intel             -   Emit Intel-style assembly \
+_nm() {
+  _arguments \
+    '-B[Alias for --format=bsd]' \
+    '-P[Alias for --format=posix]' \
+    '-aarch64-neon-syntax[Choose style of NEON code to emit from AArch64 backend]:(generic apple)' \
+    '-arch=[architecture(s) from a Mach-O file to dump]' \
+    '-debug-syms[Show all symbols, even debugger only]' \
+    '-defined-only[Show only defined symbols]' \
+    '-dynamic[Display the dynamic symbols instead of normal symbols]' \
+    '-extern-only[Show only external symbols]' \
+    '-format[Specify output format]:(bsd sysv posix darwin)' \
+    "-just-symbol-name[Print just the symbol's name]" \
+    '-m[Alias for --format=darwin]' \
+    '-no-llvm-bc[Disable LLVM bitcode reader]' \
+    '-no-sort[Show symbols in order encountered]' \
+    '-numeric-sort[Sort symbols by address]' \
+    '-print-armap[Print the archive map]' \
+    '-print-file-name[Precede each symbol with the object file it came from]' \
+    '-print-size[Show symbol size instead of address]' \
+    '-radix[Radix (o/d/x) for printing symbol Values]' \
+    '-reverse-sort[Sort in reverse order]' \
+    '-rng-seed=[Seed for the random number generator]:<seed>:' \
+    '-s=[Dump only symbols from this segment and section name, Mach-O only]:<string>:' \
+    '-size-sort[Sort symbols by size]' \
+    '-undefined-only[Show only undefined symbols]' \
+    '-x[Print symbol entry in hex, Mach-O only]' \
+    '-x86-asm-syntax[Choose style of code to emit from X86 backend:]' \
+    '-help[Display available options (-help-hidden for more)]' \
+    '-help-list[Display list of available options (-help-list-hidden for more)]' \
+    '-version[Display the version of this program]'
+}
+
+_nm
+# vim:ft=zsh:sts=2:sw=2:ts=2:expandtab
