@@ -56,6 +56,13 @@ _nm() {
     '-without-aliases[Exclude aliases from output]' \
     '-x[Print symbol entry in hex, Mach-O only]' \
     '-x86-asm-syntax=[Choose style of code to emit from X86 backend]: :->x86_asm_style' \
+    '-help[Display available options (-help-hidden for more)]' \
+    '-help-hidden[Display all available options]' \
+    '-help-list[Display list of available options (-help-list-hidden for more)]' \
+    '-help-list-hidden[Display list of all available options]' \
+    '-print-all-options[Print all option values after command line parsing]' \
+    '-print-options[Print non-default options after command line parsing]' \
+    '-version[Display the version of this program]' \
     '*: :->files'
 
   case "$state" in
