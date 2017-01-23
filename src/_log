@@ -1,0 +1,95 @@
+#compdef log
+
+# -----------------------------------------------------------------------------
+# The MIT License (MIT)
+#
+# Copyright (c) 2016 Koichi Shiraishi
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+# -----------------------------------------------------------------------------
+
+typeset -A opt_args
+
+_log() {
+  local -a commands
+
+  commands=(
+  'collect'
+  'config'
+  'erase'
+  'help'
+  'show'
+  'stream'
+  )
+
+  _arguments \
+    '--help[help]' \
+    '--quiet[quiet]' \
+    '--verbose[verbose]' \
+    "1: :{_describe 'command' commands}" \
+    '*:: :->args'
+
+  case $state in
+    args)
+      case $words[1] in
+        collect)
+          _arguments \
+            '--output[output directory path]:output directory path:_files' \
+            '--start[day and time of start logging]:"YYYY-MM-DD HH:MM:SS":_time' \
+            '--size[size of log file]:size [k|m]]'
+          ;;
+        config)
+          _arguments \
+            '--status' \
+            '--reset' \
+            '--mode:mode:' \
+            '--subsystem:subsystem name' \
+            '--category[]:category name' \
+            '-plist[output user-readable property list]' \
+            '-all[output the all disks whole disks and their partitions]'
+          ;;
+        erase)
+          _arguments \
+            '-all' \
+            '--ttl' \
+            '--faulterror'
+          ;;
+        show)
+          _arguments \
+log show [ <archive> | <logfile> ...]
+        [ --predicate <predicate> ][ --source ][ --style (syslog|json) ]
+        [ --start "YYYY-MM-DD HH:MM:SS" ] [ --end "YYYY-MM-DD HH:MM:SS"]
+        [--info] [--debug]
+        [--last <num>[m|h|d] ]
+            '-plist[output user-readable property list]'
+          ;;
+        stream)
+          _arguments \
+            '-plist[output user-readable property list]'
+          ;;
+      help)
+        _arguments "1: :{_describe 'help command' commands}"
+      esac
+      ;;
+  esac
+}
+
+_log
+
+# vim:ft=zsh:sts=2:sw=2:ts=2:et
